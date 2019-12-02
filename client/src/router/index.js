@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 
 import Ping from '../components/Ping.vue';
+import Records from '../components/Records.vue';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/ping',
     name: 'Ping',
     component: Ping,
+  },
+  {
+    path: '/records',
+    name: 'Records',
+    component: Records,
   },
 ];
 
