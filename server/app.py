@@ -103,7 +103,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 def ping_pong():
     return jsonify('pong')
 
-@app.route('/record', methods=['POST'])
+@app.route('/delay', methods=['POST'])
 def addRoute():
     response_object = {'status': 'success'}
     post_data = request.get_json()
@@ -113,7 +113,7 @@ def addRoute():
     response_object['message'] = 'Record added'
     return delay_schema.jsonify(new_delay)
 
-@app.route('/records', methods=['GET', 'POST'])
+@app.route('/delays', methods=['GET', 'POST'])
 def all_records():
     response_object = {'status': 'success'}
     response_object['records'] = RECORDS
