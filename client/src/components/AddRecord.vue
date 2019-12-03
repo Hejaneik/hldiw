@@ -1,7 +1,7 @@
 <template>
   <section>
     <button class="is-primary button is-medium" @click="isComponentModalActive=true">
-        Add Record</button>
+      Add Record</button>
     <b-modal
       :active.sync="isComponentModalActive"
       has-modal-card
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 const ModalForm = {
   props: ['name', 'time', 'date', 'excuse'],
   template: `
@@ -53,8 +55,23 @@ export default {
   },
   data() {
     return {
+      addDelayForm: {
+        name: '',
+        time: '',
+        date: '',
+        excuse: '',
+      },
       isComponentModalActive: false,
     };
+  },
+  methods: {
+    addDelay(payload) {
+      const path = 'http://localhost:5000/records';
+      axios.post(path, payload)
+        .then(() => {
+          
+        });
+    },
   },
 };
 </script>
