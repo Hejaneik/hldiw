@@ -90,6 +90,10 @@ class DelaySchema(ma.Schema):
     class Meta:
         fields = ('id', 'owner_id', 'late_person_id', 'delay', 'date', 'excuse')
 
+user_schema = UserSchema()
+delay_schema = DelaySchema()
+delays_schema = DelaySchema(many=True)
+
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -99,24 +103,20 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 def ping_pong():
     return jsonify('pong')
 
+@app.route('/record', methods=['POST'])
+def addRoute():
+    response_object = {'status': 'success'}
+    post_data = request.get_json()
+    new_delay = Delay(1, 2, post_data.get('time'), datetime.utcnow(), post_data.get('excuse'))
+    db.session.add(new_delay)
+    db.session.commit()
+    response_object['message'] = 'Record added'
+    return delay_schema.jsonify(new_delay)
 
 @app.route('/records', methods=['GET', 'POST'])
 def all_records():
     response_object = {'status': 'success'}
-    if request.method == 'POST':
-        post_data = request.get_json()
-        RECORDS.append({
-            'name': post_data.get('name'),
-            'time': post_data.get('time'),
-            'date': post_data.get('date'),
-            'excuse': post_data.get('excuse'),
-        })
-        new_delay = Delay(1, 2, post_data.get('time'), datetime.utcnow(), post_data.get('excuse'))
-        db.session.add(new_delay)
-        db.session.commit()
-        response_object['message'] = 'Record added'
-    else:
-        response_object['records'] = RECORDS
+    response_object['records'] = RECORDS
     return jsonify(response_object)
 
 
