@@ -11,19 +11,19 @@ RECORDS = [
     {
         'name': 'Max Mustermann',
         'time': '2 hours',
-        'date': datetime.datetime(2019, 12, 2),
+        'date': datetime(2019, 12, 2),
         'excuse': 'none'
     },
     {
         'name': 'Max Mustermann',
         'time': '3 hours',
-        'date': datetime.datetime(2019, 12, 3),
+        'date': datetime(2019, 12, 3),
         'excuse': 'laziness'
     },
     {
         'name': 'Mux Mastermann',
         'time': '2 hours',
-        'date': datetime.datetime(2019, 12, 1),
+        'date': datetime(2019, 12, 1),
         'excuse': 'Shopping in airsoft shop'
     }
 ]
@@ -42,15 +42,15 @@ class User(db.Model):
     password = db.Column(db.String(120), nullable=False)
     user_since = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     email = db.Column(db.String(120), nullable=False)
-    posts = db.relationship('Delays', backref='user', lazy=True)
+    # posts = db.relationship('Delays', backref='user', lazy=True)
 
     def __repr__(self):
-        return f'User({username}, {first_name}, {last_name})'
+        return f"User('{self.username}', '{self.first_name}', '{self.last_name}')"
 
 admin = User(username='admin', first_name='Hendrik', last_name='Hoefert', password='admin', email='admin@example.com')
-lucas = User(username='cpastoncp', first_name='Lucas', last_name='Jansen', paswwort='password', email='lucasjansen@example.com')
+lucas = User(username='cpastoncp', first_name='Lucas', last_name='Jansen', password='password', email='lucasjansen@example.com')
 
-class Delays(db.Model):
+class Delay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     late_person_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -62,7 +62,7 @@ class Delays(db.Model):
     excuse = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
-        return f'Delay({owner}, {late_person}, {delay}, {date})'
+        return f'Delay({self.owner}, {self.late_person}, {self.delay}, {self.date})'
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -84,6 +84,9 @@ def all_records():
             'date': post_data.get('date'),
             'excuse': post_data.get('excuse'),
         })
+        new_delay = Delay(owner_id=1, late_person_id=2, delay=post_data.get('time'), date=post_data.get('date'), excuse=post_data.get('excuse'))
+        db.session.add(new_delay)
+        db.session.commit()
         response_object['message'] = 'Record added'
     else:
         response_object['records'] = RECORDS
