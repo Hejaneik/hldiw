@@ -25,18 +25,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Records',
   data() {
-    const records = [
-      {
-        name: 'Max Mustermann',
-        time: '20 min',
-        date: 'heute',
-        excuse: 'lorem ipsum',
-      },
-    ];
-    return { records };
+    return {
+      records: [],
+    };
+  },
+  methods: {
+    getRecords() {
+      const path = 'http://localhost:5000/records';
+      axios.get(path)
+        .then((res) => {
+          this.records = res.data.records;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.log(error);
+        });
+    },
+  },
+  created() {
+    this.getRecords();
   },
 };
 </script>
