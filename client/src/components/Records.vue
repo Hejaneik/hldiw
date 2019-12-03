@@ -21,14 +21,19 @@
         </template>
       </b-table>
     </section>
+    <add-record></add-record>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import AddRecord from './AddRecord.vue';
 
 export default {
   name: 'Records',
+  components: {
+    AddRecord,
+  },
   data() {
     return {
       records: [],
