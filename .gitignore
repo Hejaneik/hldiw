@@ -132,3 +132,6 @@ yarn-error.log*
 *.sln
 *.sw?
 
+
+# Database
+tmp/
