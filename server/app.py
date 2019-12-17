@@ -84,13 +84,14 @@ class Delay(db.Model):
 # Initialize schemas
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'username', 'first_name', 'last_name', 'password', 'user_since', 'email')
+        fields = ('id', 'username', 'first_name', 'last_name', 'user_since')
 
 class DelaySchema(ma.Schema):
     class Meta:
         fields = ('id', 'owner_id', 'late_person_id', 'delay', 'date', 'excuse')
 
 user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 delay_schema = DelaySchema()
 delays_schema = DelaySchema(many=True)
 
@@ -105,20 +106,18 @@ def ping_pong():
 
 @app.route('/delay', methods=['POST'])
 def addRoute():
-    response_object = {'status': 'success'}
     post_data = request.get_json()
     new_delay = Delay(1, 2, post_data.get('time'), datetime.utcnow(), post_data.get('excuse'))
     db.session.add(new_delay)
     db.session.commit()
-    response_object['message'] = 'Record added'
     return delay_schema.jsonify(new_delay)
 
 @app.route('/delays', methods=['GET', 'POST'])
 def all_records():
     #TODO return all from db
     response_object = {'status': 'success'}
-    response_object['delays'] = Delay.query.all()
-    return jsonify(response_object)
+    response_object['records'] = Delay.query.all()
+    return delays_schema.jsonify(Delay.query.all())
 
 
 if __name__ == '__main__':
