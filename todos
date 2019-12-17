@@ -1,0 +1,6 @@
+1. make posts via client (form)
+
+2. add user authentication
+
+3. add dedicated user routes (post and get)
+    for instance to retrive personal delays
