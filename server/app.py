@@ -115,8 +115,9 @@ def addRoute():
 
 @app.route('/delays', methods=['GET', 'POST'])
 def all_records():
+    #TODO return all from db
     response_object = {'status': 'success'}
-    response_object['records'] = RECORDS
+    response_object['delays'] = Delay.query.all()
     return jsonify(response_object)
 
 

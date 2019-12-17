@@ -22,6 +22,7 @@
       </b-table>
     </section>
 
+    <!-- TODO add post functionality -->
     <section>
     <button class="is-primary button is-medium" @click="isComponentModalActive=true">
       Add Delay</button>
