@@ -1,29 +1,5 @@
 <template>
-  <div>
-    <section>
-      <b-table :data="delays">
-        <template slot-scope="props">
-          <b-table-column field="name" label="Name">{{ props.row.name }}</b-table-column>
-          <b-table-column field="time" label="Time">{{props.row.time}}</b-table-column>
-          <b-table-column field="date" label="Date">{{props.row.date}}</b-table-column>
-          <b-table-column field="excuse" label="Excuse">{{props.row.excuse}}</b-table-column>
-        </template>
-
-        <template slot="empty">
-          <section class="section">
-            <div class="content has-text-grey has-text-centered">
-              <p>
-                <b-icon icon="emoticon-sad" size="is-large"></b-icon>
-              </p>
-              <p>Nothing here.</p>
-            </div>
-          </section>
-        </template>
-      </b-table>
-    </section>
-
-    <!-- TODO add post functionality -->
-    <section>
+  <section>
     <button class="is-primary button is-medium" @click="isComponentModalActive=true">
       Add Delay</button>
     <b-modal
@@ -36,7 +12,6 @@
       <modal-form></modal-form>
     </b-modal>
   </section>
-  </div>
 </template>
 
 <script>
@@ -66,7 +41,7 @@ const ModalForm = {
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
-                <button class="button is-primary" type="submit">Add Delay</button>
+                <button class="button is-primary">Add Delay</button>
             </footer>
             </div>
         </form>
@@ -74,7 +49,7 @@ const ModalForm = {
 };
 
 export default {
-  name: 'Records',
+  name: 'AddDelay',
   components: {
     ModalForm,
   },
@@ -87,35 +62,16 @@ export default {
         excuse: '',
       },
       isComponentModalActive: false,
-      delays: [],
     };
   },
   methods: {
-    getDelays() {
-      const path = 'http://localhost:5000/records';
-      axios.get(path)
-        .then((res) => {
-          this.delays = res.data.records;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.log(error);
-        });
-    },
     addDelay(payload) {
-      const path = 'http://localhost:5000/records';
+      const path = 'http://localhost:5000/delays';
       axios.post(path, payload)
         .then(() => {
-          this.getDelays();
+
         });
     },
-    onSubmit() {
-      // eslint-disable-next-line
-      console.log("submitted");
-    },
-  },
-  created() {
-    this.getDelays();
   },
 };
 </script>
