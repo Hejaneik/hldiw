@@ -25,8 +25,8 @@
 
     <!-- TODO add post functionality -->
     <section>
-      <button class="is-primary button is-medium" @click="isComponentModalActive=true">
-        Add Delay</button>
+      <button class="is-primary button is-medium"
+      @click="isComponentModalActive=true">Add Delay</button>
       <b-modal
         :active.sync="isComponentModalActive"
         has-modal-card
@@ -35,7 +35,33 @@
         aria-modal
         v-bind="addDelayForm"
       >
-        <modal-form v-model="addDelayForm" v-on:form-submitted="submit"></modal-form>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Add Delay</p>
+          </header>
+          <section class="modal-card-body">
+            <b-field label="Name">
+              <b-input type="text" v-model="addDelayForm.name"
+              placeholder="Name" required></b-input>
+            </b-field>
+            <b-field label="Delay">
+              <b-input type="text" v-model="addDelayForm.delay"
+              placeholder="Delay" required></b-input>
+            </b-field>
+            <b-field label="Date">
+              <b-input type="text" v-model="addDelayForm.date"
+              placeholder="Date" required></b-input>
+            </b-field>
+            <b-field label="Excuse">
+              <b-input type="text" v-model="addDelayForm.excuse"
+              placeholder="Excuse" required></b-input>
+            </b-field>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button" type="button" @click="$parent.close()">Close</button>
+            <button class="button is-primary" @click="submit()">Add Delay</button>
+          </footer>
+        </div>
       </b-modal>
     </section>
   </div>
@@ -43,12 +69,12 @@
 
 <script>
 import axios from 'axios';
-import ModalForm from './ModalForm.vue';
+// import ModalForm from './ModalForm.vue';
 
 export default {
   name: 'Delays',
   components: {
-    ModalForm,
+    // ModalForm,
   },
   data() {
     return {
@@ -77,7 +103,8 @@ export default {
     },
     addDelay(payload) {
       const path = 'http://localhost:5000/delay';
-      axios.post(path, payload)
+      axios
+        .post(path, payload)
         .then(() => {
           // this.getDelays();
         })
@@ -95,7 +122,7 @@ export default {
     },
     submit() {
       // eslint-disable-next-line
-      console.log('submit called')
+      console.log("submit called");
       this.isComponentModalActive = false;
       const payload = {
         // TODO add ID of posting person
