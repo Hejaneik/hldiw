@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 const ModalForm = {
   props: ['name', 'time', 'date', 'excuse'],
   template: `
@@ -52,26 +50,6 @@ export default {
   name: 'AddDelay',
   components: {
     ModalForm,
-  },
-  data() {
-    return {
-      addDelayForm: {
-        name: '',
-        time: '',
-        date: '',
-        excuse: '',
-      },
-      isComponentModalActive: false,
-    };
-  },
-  methods: {
-    addDelay(payload) {
-      const path = 'http://localhost:5000/delays';
-      axios.post(path, payload)
-        .then(() => {
-
-        });
-    },
   },
 };
 </script>
