@@ -109,7 +109,7 @@ def ping_pong():
 @app.route('/delay', methods=['POST'])
 def addRoute():
     post_data = request.get_json()
-    new_delay = Delay(1, 2, post_data.get('time'), datetime.utcnow(), post_data.get('excuse'))
+    new_delay = Delay(1, 2, post_data.get('delay'), datetime.utcnow(), post_data.get('excuse'))
     db.session.add(new_delay)
     db.session.commit()
     return delay_schema.jsonify(new_delay)
