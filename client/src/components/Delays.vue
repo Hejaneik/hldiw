@@ -106,7 +106,7 @@ export default {
       axios
         .post(path, payload)
         .then(() => {
-          // this.getDelays();
+          this.getDelays();
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -121,8 +121,6 @@ export default {
       this.addDelayForm.excuse = '';
     },
     submit() {
-      // eslint-disable-next-line
-      console.log("submit called");
       this.isComponentModalActive = false;
       const payload = {
         // TODO add ID of posting person
@@ -133,12 +131,8 @@ export default {
         date: this.addDelayForm.date,
         excuse: this.addDelayForm.excuse,
       };
-      // eslint-disable-next-line
-      console.log(payload);
       this.addDelay(payload);
       this.initForm();
-      // eslint-disable-next-line
-      console.log("submitted");
     },
   },
   created() {
