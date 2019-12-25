@@ -1,5 +1,5 @@
 <template>
-  <form action>
+  <!-- <form> -->
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Add Delay</p>
@@ -20,16 +20,21 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button" type="button" @click="$parent.close()">Close</button>
-        <button class="button is-primary" type="submit">Add Delay</button>
+        <button class="button is-primary" @click="notifyParent()">Add Delay</button>
       </footer>
     </div>
-  </form>
+  <!-- </form> -->
 </template>
 
 <script>
 export default {
   name: 'ModalForm',
   props: ['name', 'time', 'date', 'excuse'],
+  methods: {
+    notifyParent() {
+      this.$emit('form-submitted');
+    },
+  },
 };
 </script>
 

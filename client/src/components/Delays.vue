@@ -35,7 +35,7 @@
         aria-modal
         v-bind="addDelayForm"
       >
-        <modal-form v-bind="addDelayForm"></modal-form>
+        <modal-form v-model="addDelayForm" v-on:form-submitted="submit"></modal-form>
       </b-modal>
     </section>
   </div>
@@ -79,7 +79,7 @@ export default {
       const path = 'http://localhost:5000/delay';
       axios.post(path, payload)
         .then(() => {
-          this.getDelays();
+          // this.getDelays();
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -93,10 +93,9 @@ export default {
       this.addDelayForm.time = '';
       this.addDelayForm.excuse = '';
     },
-    onSubmit(evt) {
+    submit() {
       // eslint-disable-next-line
       console.log('submit called')
-      evt.preventDefault();
       this.isComponentModalActive = false;
       const payload = {
         // TODO add ID of posting person
@@ -107,6 +106,8 @@ export default {
         date: this.addDelayForm.date,
         excuse: this.addDelayForm.excuse,
       };
+      // eslint-disable-next-line
+      console.log(payload);
       this.addDelay(payload);
       this.initForm();
       // eslint-disable-next-line
