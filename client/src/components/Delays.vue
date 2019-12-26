@@ -30,7 +30,7 @@
       <b-modal
         :active.sync="isComponentModalActive"
         has-modal-card
-        trap-focus
+        v-bind:trap-focus="false"
         aria-role="dialog"
         aria-modal
         v-bind="addDelayForm"
@@ -49,8 +49,17 @@
               placeholder="Delay" required></b-input>
             </b-field>
             <b-field label="Date">
-              <b-input type="text" v-model="addDelayForm.date"
-              placeholder="Date" required></b-input>
+              <!-- <b-input type="text" v-model="addDelayForm.date"
+              placeholder="Date" required></b-input> -->
+              <b-datetimepicker
+                rounded
+                v-model="addDelayForm.date"
+                placeholder="Click to select..."
+                icon="calendar-today"
+                required
+                editable
+                position="is-top-right"
+              ></b-datetimepicker>
             </b-field>
             <b-field label="Excuse">
               <b-input type="text" v-model="addDelayForm.excuse"
@@ -58,7 +67,7 @@
             </b-field>
           </section>
           <footer class="modal-card-foot">
-            <button class="button" type="button" @click="$parent.close()">Close</button>
+            <button class="button" type="button" @click="close()">Close</button>
             <button class="button is-primary" @click="submit()">Add Delay</button>
           </footer>
         </div>
@@ -81,7 +90,7 @@ export default {
       addDelayForm: {
         name: '',
         delay: '',
-        date: Date.now().toString(),
+        date: new Date(),
         excuse: '',
       },
       isComponentModalActive: false,
@@ -134,6 +143,10 @@ export default {
       this.addDelay(payload);
       this.initForm();
     },
+    close() {
+      this.isComponentModalActive = false;
+      this.initForm();
+    },
   },
   created() {
     this.getDelays();
@@ -142,4 +155,11 @@ export default {
 </script>
 
 <style>
+.modal .animation-content .modal-card {
+  overflow: visible !important;
+}
+
+.modal-card-body {
+  overflow: visible !important;
+}
 </style>
