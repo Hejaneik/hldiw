@@ -155,6 +155,7 @@ export default {
 </script>
 
 <style>
+/* needed in order to have the datetimepicker overflowing the modal */
 .modal .animation-content .modal-card {
   overflow: visible !important;
 }
