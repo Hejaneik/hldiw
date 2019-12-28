@@ -109,7 +109,7 @@ def all_delays():
 @app.route('/user/<user_id>', methods=['GET', 'POST'])
 def user(user_id):
     if request.method == 'GET':
-        return user_schema.jsonify(User.query.filter_by(id == user_id).first())
+        return user_schema.jsonify(User.query.filter_by(id=user_id).first())
     if request.method == 'POST':
         pass
         # TODO
