@@ -38,7 +38,7 @@ class User(db.Model):
         self.password = password
         self.email = email
         self.user_since = user_since
-        self.id = 'u' + uuid.uuid4().hex()
+        self.id = 'u' + uuid.uuid4().hex
 
 admin = User(username='admin', first_name='Hendrik', last_name='Hoefert', password='admin', email='admin@example.com', user_since=datetime.utcnow())
 lucas = User(username='cpastoncp', first_name='Lucas', last_name='Jansen', password='password', email='lucasjansen@example.com', user_since=datetime.utcnow())
@@ -63,7 +63,7 @@ class Delay(db.Model):
         self.delay = delay
         self.date = date
         self.excuse = excuse
-        self.id = 'd' + uuid.uuid4().hex()
+        self.id = 'd' + uuid.uuid4().hex
 
 # Initialize schemas
 class UserSchema(ma.Schema):
@@ -91,7 +91,7 @@ def ping_pong():
 # route to add a single delay
 # TODO handle users and make GET route for single delay (TODO is this needed/useful)
 @app.route('/delay', methods=['POST'])
-def addRoute():
+def add_delay():
     post_data = request.get_json()
     datetime_obj = datetime.strptime(post_data.get('date'), '%Y-%m-%dT%H:%M:%S.%fZ')
     new_delay = Delay(1, 2, post_data.get('delay'), datetime_obj, post_data.get('excuse'))
@@ -102,17 +102,17 @@ def addRoute():
 # route to get all delays
 # TODO add ID for user to only get specific delays/ add other options
 @app.route('/delays', methods=['GET', 'POST'])
-def all_records():
-    #TODO return all from db
-    response_object = {'status': 'success'}
-    response_object['records'] = Delay.query.all()
+def all_delays():
     return delays_schema.jsonify(Delay.query.all())
 
 # route to GET a single user and POST to alter user data (TODO needs authentication)
-@app.route('/user/<id>', methods=['GET', 'POST'])
-def user():
-    pass
-    # TODO
+@app.route('/user/<user_id>', methods=['GET', 'POST'])
+def user(user_id):
+    if request.method == 'GET':
+        return user_schema.jsonify(User.query.filter_by(id == user_id).first())
+    if request.method == 'POST':
+        pass
+        # TODO
 
 # route to get all friends of specfic user
 @app.route('/friends', methods=['GET'])
