@@ -101,11 +101,13 @@ delays_schema = DelaySchema(many=True)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-
+# route to check if server responds
 @app.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify('pong')
 
+# route to add a single delay
+# TODO handle users and make GET route for single delay (TODO is this needed/useful)
 @app.route('/delay', methods=['POST'])
 def addRoute():
     post_data = request.get_json()
@@ -115,6 +117,8 @@ def addRoute():
     db.session.commit()
     return delay_schema.jsonify(new_delay)
 
+# route to get all delays
+# TODO add ID for user to only get specific delays/ add other options
 @app.route('/delays', methods=['GET', 'POST'])
 def all_records():
     #TODO return all from db
@@ -122,6 +126,17 @@ def all_records():
     response_object['records'] = Delay.query.all()
     return delays_schema.jsonify(Delay.query.all())
 
+# rouute to GET a single user and POST to alter user data (TODO needs authentication)
+@app.route('/user<id>', methods=['GET', 'POST'])
+def user():
+    pass
+    # TODO
+
+# route to get all friends of specfic person
+@app.route('/friends', methods=['GET'])
+def friends():
+    pass
+    # TODO
 
 if __name__ == '__main__':
     app.run()
