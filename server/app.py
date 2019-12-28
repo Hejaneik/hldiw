@@ -2,32 +2,12 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+import uuid
 
 from datetime import datetime
 
 # configuration
 DEBUG = True
-
-RECORDS = [
-    {
-        'name': 'Max Mustermann',
-        'time': '2 hours',
-        'date': datetime(2019, 12, 2),
-        'excuse': 'none'
-    },
-    {
-        'name': 'Max Mustermann',
-        'time': '3 hours',
-        'date': datetime(2019, 12, 3),
-        'excuse': 'laziness'
-    },
-    {
-        'name': 'Mux Mastermann',
-        'time': '2 hours',
-        'date': datetime(2019, 12, 1),
-        'excuse': 'Shopping in airsoft shop'
-    }
-]
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -57,7 +37,8 @@ class User(db.Model):
         self.last_name = last_name
         self.password = password
         self.email = email
-        self. user_since = user_since
+        self.user_since = user_since
+        self.id = 'u' + uuid.uuid4().hex()
 
 admin = User(username='admin', first_name='Hendrik', last_name='Hoefert', password='admin', email='admin@example.com', user_since=datetime.utcnow())
 lucas = User(username='cpastoncp', first_name='Lucas', last_name='Jansen', password='password', email='lucasjansen@example.com', user_since=datetime.utcnow())
@@ -82,6 +63,7 @@ class Delay(db.Model):
         self.delay = delay
         self.date = date
         self.excuse = excuse
+        self.id = 'd' + uuid.uuid4().hex()
 
 # Initialize schemas
 class UserSchema(ma.Schema):
@@ -126,13 +108,13 @@ def all_records():
     response_object['records'] = Delay.query.all()
     return delays_schema.jsonify(Delay.query.all())
 
-# rouute to GET a single user and POST to alter user data (TODO needs authentication)
-@app.route('/user<id>', methods=['GET', 'POST'])
+# route to GET a single user and POST to alter user data (TODO needs authentication)
+@app.route('/user/<id>', methods=['GET', 'POST'])
 def user():
     pass
     # TODO
 
-# route to get all friends of specfic person
+# route to get all friends of specfic user
 @app.route('/friends', methods=['GET'])
 def friends():
     pass
