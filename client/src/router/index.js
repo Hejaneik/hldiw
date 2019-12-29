@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 
 import Ping from '../components/Ping.vue';
 import Delays from '../components/Delays.vue';
+import Friends from '../components/Friends.vue';
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/delays',
     name: 'Delays',
     component: Delays,
+  },
+  {
+    path: '/friends',
+    name: 'Friends',
+    component: Friends,
   },
 ];
 
