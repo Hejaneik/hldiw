@@ -117,8 +117,7 @@ def user(user_id):
 # route to get all friends of specfic user
 @app.route('/friends', methods=['GET'])
 def friends():
-    pass
-    # TODO
+    return users_schema.jsonify(User.query.all())
 
 if __name__ == '__main__':
     app.run()
