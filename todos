@@ -12,6 +12,7 @@
     -error page exists for 404
     -handle empty responses in components
 1.4. how to organize a flask app in the best way?
+    -flask-restful?
 1.4.1. split into seperate files
 
 2. add user authentication
