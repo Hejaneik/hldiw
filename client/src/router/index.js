@@ -6,6 +6,8 @@ import Ping from '../components/Ping.vue';
 import Delays from '../components/Delays.vue';
 import Friends from '../components/Friends.vue';
 
+import NotFound from '../components/NotFound.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -36,6 +38,11 @@ const routes = [
     path: '/friends',
     name: 'Friends',
     component: Friends,
+  },
+  // all new routes before this one, default route to display error messages
+  {
+    path: '*',
+    component: NotFound,
   },
 ];
 
