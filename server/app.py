@@ -38,7 +38,7 @@ class User(db.Model):
         self.password = password
         self.email = email
         self.user_since = user_since
-        self.id = 'u' + uuid.uuid4().hex
+        # self.id = uuid.uuid4().int
 
 admin = User(username='admin', first_name='Hendrik', last_name='Hoefert', password='admin', email='admin@example.com', user_since=datetime.utcnow())
 lucas = User(username='cpastoncp', first_name='Lucas', last_name='Jansen', password='password', email='lucasjansen@example.com', user_since=datetime.utcnow())
@@ -63,7 +63,7 @@ class Delay(db.Model):
         self.delay = delay
         self.date = date
         self.excuse = excuse
-        self.id = 'd' + uuid.uuid4().hex
+        # self.id = uuid.uuid4().int
 
 # Initialize schemas
 class UserSchema(ma.Schema):
