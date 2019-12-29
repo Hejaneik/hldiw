@@ -3,7 +3,7 @@
     <section>
       <b-table :data="friends">
         <template slot-scope="props">
-          <b-table-column field="username" label="Username">{{props.row.name}}</b-table-column>
+          <b-table-column field="username" label="Username">{{props.row.username}}</b-table-column>
           <b-table-column field="id" label="ID">{{props.row.id}}</b-table-column>
           <b-table-column field="name" label="Name">{{props.row.first_name}} {{props.row.last_name}}
           </b-table-column>
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     getFriends() {
-      const path = 'https://localhost:5000/friends';
+      const path = 'http://localhost:5000/friends';
       axios
         .get(path)
         .then((res) => {

@@ -4,8 +4,11 @@
     -added native datetimepicker
     -done
 1.2. routes for users
+    -done
 1.2.1 look at uuid
+    -done
 1.3. schemas for user and delay responses
+1.3.1. make error page and return error messages if response is empty
 1.4. how to organize a flask app in the best way?
 1.4.1. split into seperate files
 
