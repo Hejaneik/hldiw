@@ -12,7 +12,7 @@ auth = Blueprint('auth', __name__)
 
 user_schema = UserSchema()
 
-# routes will go here
+# route to add a user
 @auth.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
@@ -26,7 +26,8 @@ def signup():
     db.session.commit()
     return user_schema.jsonify(user), 201
 
-@auth.route('signin', method=['POST'])
+# route to sign in a user
+@auth.route('/signin', method=['POST'])
 def login():
     data = request.get_json()
     User.autheticate(**data)
