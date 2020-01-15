@@ -1,6 +1,6 @@
 # auth blueprint
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime
 
 import jwt
@@ -38,5 +38,7 @@ def login():
     token = jwt.encode({
         'sub': user.username,
         'iat': datetime.utcnow(), # time the token was creaeted
-        'exp': datetime.utcnow() + timedelta(minutes=30)}
-        )
+        'exp': datetime.utcnow() + timedelta(minutes=30)},
+        current_app.config['SECRET_KEY'])
+        
+    return jsonify({'token': token.decode('UTF-8')})
