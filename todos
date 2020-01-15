@@ -19,5 +19,7 @@
 
 2. add user authentication
 
-3. add dedicated user routes (post and get)
+3. add db manager for migration and updating for further development
+
+4. add dedicated user routes (post and get)
     for instance to retrive personal delays
