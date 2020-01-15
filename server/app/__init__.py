@@ -11,7 +11,7 @@ db = SQLAlchemy()
 ma = Marshmallow()
 
 # configuration
-DEBUG = True
+app.config.from_object('config')
 
 
 def create_app():

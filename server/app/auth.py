@@ -25,3 +25,18 @@ def signup():
     db.session.add(user)
     db.session.commit()
     return user_schema.jsonify(user), 201
+
+@auth.route('signin', method=['POST'])
+def login():
+    data = request.get_json()
+    User.autheticate(**data)
+
+    if not user:
+        return {'message':'Invalid credentials', 'authenticated':False}, 401
+
+    # create JSON Web Token
+    token = jwt.encode({
+        'sub': user.username,
+        'iat': datetime.utcnow(), # time the token was creaeted
+        'exp': datetime.utcnow() + timedelta(minutes=30)}
+        )
