@@ -100,6 +100,8 @@ export default {
     };
   },
   methods: {
+    // TODO add loading animation before delays are fetched
+    // TODO rework the following methods
     getDelays() {
       const path = `${BASE_URL}/delays`;
       axios
