@@ -78,6 +78,8 @@
 
 <script>
 import axios from 'axios';
+
+const BASE_URL = 'http://localhost:5000';
 // import ModalForm from './ModalForm.vue';
 
 export default {
@@ -99,7 +101,7 @@ export default {
   },
   methods: {
     getDelays() {
-      const path = 'http://localhost:5000/delays';
+      const path = `${BASE_URL}/delays`;
       axios
         .get(path)
         .then((res) => {
@@ -111,7 +113,7 @@ export default {
         });
     },
     addDelay(payload) {
-      const path = 'http://localhost:5000/delay';
+      const path = `${BASE_URL}/delay`;
       axios
         .post(path, payload)
         .then(() => {

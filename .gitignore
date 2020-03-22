@@ -137,3 +137,4 @@ yarn-error.log*
 tmp/
 server/tmp/
 .todos.kate-swp
+server/app/config.py
