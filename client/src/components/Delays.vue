@@ -78,6 +78,7 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';  
 
 const BASE_URL = 'http://localhost:5000';
 // import ModalForm from './ModalForm.vue';
