@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // AJAX methods from api here
-import { fetchDelays } from '@/api';
+import { fetchDelays, addDelay } from '@/api';
 
 Vue.use(Vuex);
 
@@ -19,6 +19,9 @@ export default new Vuex.Store({
     loadDelays(context) {
       return fetchDelays()
         .then(res => context.commit('setDelays', { delays: res.data }));
+    },
+    submitDelay(context, delay) {
+      return addDelay(delay);
     },
   },
   modules: {

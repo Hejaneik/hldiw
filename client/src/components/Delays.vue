@@ -144,7 +144,8 @@ export default {
         date: this.addDelayForm.date,
         excuse: this.addDelayForm.excuse,
       };
-      this.addDelay(payload);
+      // this.addDelay(payload);
+      this.$store.dispatch('submitDelay', payload);
       this.initForm();
     },
     close() {
