@@ -78,7 +78,7 @@
 
 <script>
 import axios from 'axios';
-import { mapState } from 'vuex';  
+import { mapState } from 'vuex';
 
 const BASE_URL = 'http://localhost:5000';
 // import ModalForm from './ModalForm.vue';
@@ -97,7 +97,6 @@ export default {
         excuse: '',
       },
       isComponentModalActive: false,
-      delays: [],
     };
   },
   methods: {
@@ -153,6 +152,12 @@ export default {
   },
   created() {
     this.getDelays();
+  },
+  computed: mapState({
+    delays: state => state.delays,
+  }),
+  beforeMount() {
+    this.$store.dispatch('loadDelays');
   },
 };
 </script>
