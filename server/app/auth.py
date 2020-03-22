@@ -14,8 +14,8 @@ auth = Blueprint('auth', __name__)
 user_schema = UserSchema()
 
 # route to add a user
-@auth.route('/signup', methods=['POST'])
-def signup():
+@auth.route('/register', methods=['POST'])
+def register():
     data = request.get_json()
 
     user = User.query.filter((User.email == data.email) | (User.username == data.username)).first()
@@ -28,7 +28,7 @@ def signup():
     return user_schema.jsonify(user), 201
 
 # route to sign in a user
-@auth.route('/signin', method=['POST'])
+@auth.route('/signin', methods=['POST'])
 def login():
     data = request.get_json()
     User.autheticate(**data)
