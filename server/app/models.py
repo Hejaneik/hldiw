@@ -1,4 +1,5 @@
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 
 from . import db, ma
@@ -9,7 +10,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=True)
-    password = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     user_since = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     email = db.Column(db.String(120), nullable=False)
@@ -22,10 +23,24 @@ class User(db.Model):
         self.username = username
         self.first_name = first_name
         self.last_name = last_name
-        self.password = password
+        self.password = generate_password_hash(password, method='sha256')
         self.email = email
         self.user_since = user_since
         # self.id = uuid.uuid4().int
+
+    @classmethod
+    def autheticate(cls, **kwargs):
+        username = kwargs.get('username')
+        password = kwargs.get('password')
+
+        if not username or not password:
+            return None # TODO refactor this for precise error messages
+
+        user = cls.query.filter_by(username=username).first()
+        if not user or not check_password_hash(user.password, password):
+            return None # TODO reafactor this for precise error messages
+
+        return user
 
 
 class Delay(db.Model):

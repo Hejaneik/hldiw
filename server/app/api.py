@@ -5,6 +5,7 @@ from datetime import datetime
 import uuid
 
 from .models import Delay, DelaySchema, User, UserSchema
+from .auth import token_required
 from . import db, ma
 
 api = Blueprint('api', __name__)
@@ -23,6 +24,7 @@ def ping_pong():
 # route to add a single delay
 # TODO handle users and make GET route for single delay (TODO is this needed/useful)
 @api.route('/delay', methods=['POST'])
+@token_required
 def add_delay():
     post_data = request.get_json()
     datetime_obj = datetime.strptime(
@@ -50,5 +52,6 @@ def user(user_id):
 
 # route to get all friends of specfic user
 @api.route('/friends', methods=['GET'])
+@token_required
 def friends():
     return users_schema.jsonify(User.query.all())

@@ -10,16 +10,15 @@ from datetime import datetime
 db = SQLAlchemy()
 ma = Marshmallow()
 
-# configuration
-DEBUG = True
-
-
 def create_app():
     app = Flask(__name__)
 
-    app.config.from_object(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../tmp/test.db'
-    app.config['CORS_HEADERS'] = 'Content-Type'
+    # configuration
+    app.config.from_pyfile('config.py')
+
+    # app.config.from_object(__name__)
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../tmp/test.db'
+    # app.config['CORS_HEADERS'] = 'Content-Type'
 
     db.init_app(app)
     ma.init_app(app)

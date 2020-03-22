@@ -138,3 +138,6 @@ tmp/
 server/tmp/
 .todos.kate-swp
 server/app/config.py
+
+# server config
+**/config.py
