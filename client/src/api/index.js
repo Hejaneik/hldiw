@@ -17,3 +17,7 @@ export function signin(userData) {
 export function register(userData) {
   return axios.post(`${BASE_URL}/auth/register`, userData);
 }
+
+export function fetchFriends(jwt) {
+  return axios.get(`${BASE_URL}/friends`, { headers: { Authorization: `Bearer: ${jwt}` } });
+}

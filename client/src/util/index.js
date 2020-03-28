@@ -9,5 +9,7 @@ export function isValidJwt(jwt) {
   const data = JSON.parse(atob(jwt.split('.')[1]));
   const exp = new Date(data.exp * 1000); // JS deals with dates in milliseconds since epoch
   const now = new Date();
+  // eslint-disable-next-line
+  console.log(exp + " " + now);
   return now < exp;
 }

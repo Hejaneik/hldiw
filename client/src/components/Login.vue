@@ -36,7 +36,7 @@ export default {
     authenticate() {
       this.$store
         .dispatch('login', { username: this.username, password: this.password })
-        .then(() => this.$router.push('/'));
+        .then(() => this.$router.push('/friends'));
     },
     toRegister() {
       this.$router.push('/register');

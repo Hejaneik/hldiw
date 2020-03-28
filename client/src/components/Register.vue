@@ -56,7 +56,7 @@ export default {
         username: this.username,
         password: this.password,
       })
-        .then(() => this.$router.push('/'));
+        .then(() => this.$router.push('/friends'));
     },
   },
   mounted() {
