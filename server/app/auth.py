@@ -31,7 +31,7 @@ def register():
 @auth.route('/signin', methods=['POST'])
 def login():
     data = request.get_json()
-    User.autheticate(**data)
+    user = User.authenticate(**data)
 
     if not user:
         return {'message':'Invalid credentials', 'authenticated':False}, 401

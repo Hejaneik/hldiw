@@ -29,14 +29,14 @@ class User(db.Model):
         # self.id = uuid.uuid4().int
 
     @classmethod
-    def autheticate(cls, **kwargs):
-        username = kwargs.get('username')
+    def authenticate(cls, **kwargs):
+        email = kwargs.get('email')
         password = kwargs.get('password')
 
-        if not username or not password:
+        if not email or not password:
             return None # TODO refactor this for precise error messages
 
-        user = cls.query.filter_by(username=username).first()
+        user = cls.query.filter_by(email=email).first()
         if not user or not check_password_hash(user.password, password):
             return None # TODO reafactor this for precise error messages
 
