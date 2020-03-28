@@ -11,3 +11,10 @@ export function isValidJwt(jwt) {
   const now = new Date();
   return now < exp;
 }
+
+export const getters = {
+  // resuable data accessor
+  isAuthenticated(state) {
+    return isValidJwt(state.jwt.token);
+  },
+};

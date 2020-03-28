@@ -6,7 +6,7 @@ export function fetchDelays() {
   return axios.get(`${BASE_URL}/delays`);
 }
 
-export function addDelay(payload) {
+export function addDelay(payload, jwt) {
   return axios.post(`${BASE_URL}/delay`, payload, { headers: { Authorization: `Bearer: ${jwt}` } });
 }
 

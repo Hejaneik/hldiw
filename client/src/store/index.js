@@ -19,6 +19,17 @@ export default new Vuex.Store({
     setDelays(state, payload) {
       state.delays = payload.delays;
     },
+    setUserData(state, payload) {
+      // eslint-disable-next-line
+      console.log('setUserData payload = ', payload);
+      state.userData = payload.userData;
+    },
+    setJwt(state, payload) {
+      // eslint-disable-next-line
+      console.log('setJwt payload = ', payload);
+      localStorage.token = payload.jwt.token;
+      state.jwt = payload.jwt;
+    },
   },
   actions: {
     loadDelays(context) {
@@ -26,7 +37,7 @@ export default new Vuex.Store({
         .then(res => context.commit('setDelays', { delays: res.data }));
     },
     submitDelay(context, delay) {
-      return addDelay(delay);
+      return addDelay(delay, context.state.jwt.token);
     },
     login(context, userData) {
       context.commit('setUserData', { userData });

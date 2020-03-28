@@ -17,4 +17,3 @@ with app.app_context():
     db.session.add(delay3)
 
     db.session.commit()
-
