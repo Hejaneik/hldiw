@@ -2,6 +2,7 @@
 
 from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime
+from functools import wraps
 
 import jwt
 

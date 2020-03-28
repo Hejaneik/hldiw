@@ -1,5 +1,5 @@
 from app import db
-from app import Delay
+from app.models import Delay
 from datetime import datetime
 
 db.create_all()
