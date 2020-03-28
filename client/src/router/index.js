@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store';
+
 import Home from '../views/Home.vue';
 
 import Ping from '../components/Ping.vue';
@@ -10,7 +12,6 @@ import Register from '../components/Register.vue';
 
 import NotFound from '../components/NotFound.vue';
 
-import store from '@/store';
 
 Vue.use(VueRouter);
 
