@@ -25,7 +25,7 @@
         <b-input type="password" id="password" v-model="password"></b-input>
       </b-field>
       <b-button type="is-primary" @click="register">Register</b-button>
-      <b-button type="is-primary" outlined @click="authenticate">Login</b-button>
+      <b-button type="is-primary" outlined @click="toLogin">Login</b-button>
     </section>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
     };
   },
   methods: {
-    authenticate() {
+    toLogin() {
       this.$router.push('/login');
     },
     register() {

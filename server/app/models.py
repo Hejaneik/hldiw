@@ -30,13 +30,13 @@ class User(db.Model):
 
     @classmethod
     def authenticate(cls, **kwargs):
-        email = kwargs.get('email')
+        username = kwargs.get('username')
         password = kwargs.get('password')
 
-        if not email or not password:
+        if not username or not password:
             return None # TODO refactor this for precise error messages
 
-        user = cls.query.filter_by(email=email).first()
+        user = cls.query.filter_by(username=username).first()
         if not user or not check_password_hash(user.password, password):
             return None # TODO reafactor this for precise error messages
 

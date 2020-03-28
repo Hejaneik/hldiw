@@ -18,8 +18,9 @@ user_schema = UserSchema()
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    current_app.logger.error("User Data", data)
-    user = User.query.filter((User.email == data.email) | (User.username == data.username)).first()
+    current_app.logger.error(data.username)
+    
+    user = User.query.filter_by(username=data.username).first()
     if user:
         return None, 406 # TODO flash correct error message
 

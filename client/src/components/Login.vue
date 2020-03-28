@@ -9,14 +9,14 @@
       </div>
     </section>
     <section>
-      <b-field label="Email">
-        <b-input type="email" id="email" v-model="email"></b-input>
+      <b-field label="Username">
+        <b-input id="username" v-model="username"></b-input>
       </b-field>
       <b-field label="Password">
         <b-input type="password" id="password" v-model="password"></b-input>
       </b-field>
       <b-button type="is-primary" @click="authenticate">Login</b-button>
-      <b-button type="is-primary" outlined @click="register">Register</b-button>
+      <b-button type="is-primary" outlined @click="toRegister">Register</b-button>
     </section>
   </div>
 </template>
@@ -27,7 +27,7 @@ import { EventBus } from '@/util';
 export default {
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
       errorMsg: '',
     };
@@ -35,10 +35,10 @@ export default {
   methods: {
     authenticate() {
       this.$store
-        .dispatch('login', { email: this.email, password: this.password })
+        .dispatch('login', { username: this.username, password: this.password })
         .then(() => this.$router.push('/'));
     },
-    register() {
+    toRegister() {
       this.$router.push('/register');
     },
   },
