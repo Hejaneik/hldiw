@@ -11,9 +11,9 @@ export function addDelay(payload, jwt) {
 }
 
 export function signin(userData) {
-  return axios.post(`${BASE_URL}/auth/signin`);
+  return axios.post(`${BASE_URL}/auth/signin`, userData);
 }
 
 export function register(userData) {
-  return axios.post(`${BASE_URL}/auth/register`);
+  return axios.post(`${BASE_URL}/auth/register`, userData);
 }

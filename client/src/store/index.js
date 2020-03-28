@@ -15,6 +15,12 @@ export default new Vuex.Store({
     jwt: '',
     user: {},
   },
+  getters: {
+    // reusable data accessor
+    isAuthenticated(state) {
+      return isValidJwt(state.jwt.token);
+    },
+  },
   mutations: {
     setDelays(state, payload) {
       state.delays = payload.delays;
@@ -59,7 +65,5 @@ export default new Vuex.Store({
           EventBus.$emit('failedRegsitering', err);
         });
     },
-  },
-  modules: {
   },
 });

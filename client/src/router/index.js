@@ -5,8 +5,11 @@ import Home from '../views/Home.vue';
 import Ping from '../components/Ping.vue';
 import Delays from '../components/Delays.vue';
 import Friends from '../components/Friends.vue';
+import Login from '../components/Login.vue';
 
 import NotFound from '../components/NotFound.vue';
+
+import store from '@/store';
 
 Vue.use(VueRouter);
 
@@ -30,6 +33,11 @@ const routes = [
     component: Ping,
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
     path: '/delays',
     name: 'Delays',
     component: Delays,
@@ -38,6 +46,13 @@ const routes = [
     path: '/friends',
     name: 'Friends',
     component: Friends,
+    beforeEnter(to, from, next) {
+      if (!store.getters.isAuthenticated) {
+        next('/login');
+      } else {
+        next();
+      }
+    },
   },
   // all new routes before this one, default route to display error messages
   {
