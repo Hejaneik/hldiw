@@ -19,13 +19,13 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}', '{self.first_name}', '{self.last_name}')"
 
-    def __init__(self, username, first_name, last_name, password, email, user_since):
+    def __init__(self, username, first_name, last_name, password, email):
         self.username = username
         self.first_name = first_name
         self.last_name = last_name
         self.password = generate_password_hash(password, method='sha256')
         self.email = email
-        self.user_since = user_since
+        self.user_since = datetime.utcnow()
         # self.id = uuid.uuid4().int
 
     @classmethod

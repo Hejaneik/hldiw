@@ -6,6 +6,7 @@ import Ping from '../components/Ping.vue';
 import Delays from '../components/Delays.vue';
 import Friends from '../components/Friends.vue';
 import Login from '../components/Login.vue';
+import Register from '../components/Register.vue';
 
 import NotFound from '../components/NotFound.vue';
 
@@ -36,6 +37,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
   },
   {
     path: '/delays',

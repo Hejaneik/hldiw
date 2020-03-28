@@ -62,7 +62,7 @@ export default new Vuex.Store({
         .catch((err) => {
           // eslint-disable-next-line
           console.log('Error Registering: ', err);
-          EventBus.$emit('failedRegsitering', err);
+          EventBus.$emit('failedRegistering', err);
         });
     },
   },

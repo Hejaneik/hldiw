@@ -1,8 +1,9 @@
 # auth blueprint
 
 from flask import Blueprint, jsonify, request, current_app
-from datetime import datetime
+from datetime import datetime, timedelta
 from functools import wraps
+import logging
 
 import jwt
 
@@ -17,7 +18,7 @@ user_schema = UserSchema()
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-
+    current_app.logger.error("User Data", data)
     user = User.query.filter((User.email == data.email) | (User.username == data.username)).first()
     if user:
         return None, 406 # TODO flash correct error message
