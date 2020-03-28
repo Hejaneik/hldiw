@@ -30,11 +30,6 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Friends',
-  data() {
-    return {
-      friends: [],
-    };
-  },
   computed: mapState({
     friends: state => state.friends,
   }),

@@ -49,8 +49,8 @@ export default new Vuex.Store({
         .then(res => context.commit('setDelays', { delays: res.data }));
     },
     loadFriends(context) {
-      return fetchFriends()
-        .then(res => context.commit('setFriends', { friends: res.friends }));
+      return fetchFriends(context.state.jwt.token)
+        .then(res => context.commit('setFriends', { friends: res.data }));
     },
     submitDelay(context, delay) {
       return addDelay(delay, context.state.jwt.token);

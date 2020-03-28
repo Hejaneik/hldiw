@@ -53,5 +53,5 @@ def user(user_id):
 # route to get all friends of specfic user
 @api.route('/friends', methods=['GET'])
 @token_required
-def friends():
+def friends(user):
     return users_schema.jsonify(User.query.all())
