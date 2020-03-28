@@ -18,11 +18,11 @@ user_schema = UserSchema()
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    current_app.logger.error(data.username)
+    current_app.logger.error(data)
     
-    user = User.query.filter_by(username=data.username).first()
+    user = User.query.filter_by(username=data["username"]).first()
     if user:
-        return None, 406 # TODO flash correct error message
+        return {'message':'Username already in use', 'authenticated':False}, 406 # TODO flash correct error message
 
     user = User(**data)
     db.session.add(user)
