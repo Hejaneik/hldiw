@@ -24,7 +24,7 @@ def ping_pong():
 # route to add a single delay
 # TODO handle users and make GET route for single delay (TODO is this needed/useful)
 @api.route('/delay', methods=['POST'])
-@token_required
+# @token_required
 def add_delay():
     post_data = request.get_json()
     datetime_obj = datetime.strptime(

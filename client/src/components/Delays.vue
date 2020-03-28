@@ -78,6 +78,9 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
+
+const BASE_URL = 'http://localhost:5000';
 // import ModalForm from './ModalForm.vue';
 
 export default {
@@ -94,12 +97,13 @@ export default {
         excuse: '',
       },
       isComponentModalActive: false,
-      delays: [],
     };
   },
   methods: {
+    // TODO add loading animation before delays are fetched
+    // TODO rework the following methods
     getDelays() {
-      const path = 'http://localhost:5000/delays';
+      const path = `${BASE_URL}/delays`;
       axios
         .get(path)
         .then((res) => {
@@ -111,7 +115,7 @@ export default {
         });
     },
     addDelay(payload) {
-      const path = 'http://localhost:5000/delay';
+      const path = `${BASE_URL}/delay`;
       axios
         .post(path, payload)
         .then(() => {
@@ -140,7 +144,8 @@ export default {
         date: this.addDelayForm.date,
         excuse: this.addDelayForm.excuse,
       };
-      this.addDelay(payload);
+      // this.addDelay(payload);
+      this.$store.dispatch('submitDelay', payload);
       this.initForm();
     },
     close() {
@@ -150,6 +155,12 @@ export default {
   },
   created() {
     this.getDelays();
+  },
+  computed: mapState({
+    delays: state => state.delays,
+  }),
+  beforeMount() {
+    this.$store.dispatch('loadDelays');
   },
 };
 </script>
