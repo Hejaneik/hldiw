@@ -1,13 +1,79 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
 // Set your colors
-$primary: #26D17F;
+// Set your colors
+$primary: #2BBAAC;
 $primary-invert: findColorInvert($primary);
-$secondary: #2BBAAC;
+$secondary: #26D17F;
 $secondary-invert: findColorInvert($secondary);
 $tertiary: #26A4D1;
 $tertiary-invert: findColorInvert($tertiary);
 
-$secondary-comp: #C36F5D;
-
+$purple: #7957d5;
+$purple-invert: findColorInvert($purple);
 
 $twitter: #26A4D1;
 $twitter-invert: findColorInvert($twitter);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+  "white": (
+    $white,
+    $black
+  ),
+  "black": (
+    $black,
+    $white
+  ),
+  "light": (
+    $light,
+    $light-invert
+  ),
+  "dark": (
+    $dark,
+    $dark-invert
+  ),
+  "primary": (
+    $primary,
+    $primary-invert
+  ),
+  "secondary": (
+    $secondary,
+    $secondary-invert
+  ),
+  "tertiary": (
+    $tertiary,
+    $tertiary-invert
+  ),
+  "purple": (
+    $purple,
+    $purple-invert
+  ),
+  "info": (
+    $info,
+    $info-invert
+  ),
+  "success": (
+    $success,
+    $success-invert
+  ),
+  "warning": (
+    $warning,
+    $warning-invert
+  ),
+  "danger": (
+    $danger,
+    $danger-invert
+  ),
+  "twitter": (
+    $twitter,
+    $twitter-invert
+  )
+);
+
+

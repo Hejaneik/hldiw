@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="is-secondary">
+  <b-navbar type="is-primary">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
@@ -22,11 +22,12 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button secondary-comp" tag="router-link"
+          <a class="button is-purple" tag="router-link"
           :to="{ path: '/register' }">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light" tag="router-link" :to="{ path: '/login' }">Log in</a>
+          <a class="button is-light" tag="router-link"
+          :to="{ path: '/login' }"><strong>Log in</strong></a>
         </div>
       </b-navbar-item>
     </template>
@@ -40,7 +41,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .secondary-comp {
-    background-color: $secondary-comp;
-  }
 </style>
