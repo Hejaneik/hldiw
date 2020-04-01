@@ -26,7 +26,8 @@
               </figure>
             </article>
             <b-field class="field" horizontal label="Email">
-              <b-input type="email" id="email" v-model="email" expanded required></b-input>
+              <b-input type="email" id="email" v-model="email"
+              expanded required></b-input>
             </b-field>
             <b-field horizontal label="Name">
               <b-input
@@ -47,8 +48,10 @@
             </b-field>
             <b-field horizontal>
               <div>
-                <b-button class="btn" type="is-primary" @click="register">Register</b-button>
-                <b-button class="btn" type="is-primary" outlined @click="toLogin">Login</b-button>
+                <b-button class="btn" type="is-primary
+                is-medium" @click="register">Register</b-button>
+                <b-button class="btn" type="is-primary
+                is-medium" outlined @click="toLogin">Login</b-button>
               </div>
             </b-field>
           </div>
