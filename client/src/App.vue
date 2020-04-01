@@ -24,6 +24,8 @@ export default {
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
+@import "@/assets/scss/colors.scss";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
