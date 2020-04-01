@@ -45,7 +45,12 @@ export default {
 </script>
 
 <style lang="scss">
+// .navbar {
+//   border-bottom: 3px solid;
+//   border-color: $white;
+// }
+
 .button {
-  margin-left: 3px;
+  margin-left: 7px;
 }
 </style>
