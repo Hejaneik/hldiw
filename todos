@@ -18,6 +18,8 @@
     -done
 
 2. add user authentication
+    - done
+2.1. store token in local storage 
 
 3. add db manager for migration and updating for further development
 

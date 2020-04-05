@@ -26,31 +26,15 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Friends',
-  data() {
-    return {
-      friends: [],
-    };
-  },
-  methods: {
-    getFriends() {
-      const path = 'http://localhost:5000/friends';
-      axios
-        .get(path)
-        .then((res) => {
-          this.friends = res.data;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.log(error);
-        });
-    },
-  },
-  created() {
-    this.getFriends();
+  computed: mapState({
+    friends: state => state.friends,
+  }),
+  beforeMount() {
+    this.$store.dispatch('loadFriends');
   },
 };
 </script>
