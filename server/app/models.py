@@ -21,6 +21,8 @@ class User(db.Model):
                            default=datetime.utcnow)
     email = db.Column(db.String(120), nullable=False)
     # posts = db.relationship('Delays', backref='user', lazy=True)
+    friends = db.relationship('User', secondary=friendship, primaryjoin=id==friendship.c.origin_user_id, 
+    secondaryjoin=id==friendship.c.friend_user_id)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.first_name}', '{self.last_name}')"
