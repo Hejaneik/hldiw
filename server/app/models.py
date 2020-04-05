@@ -4,6 +4,12 @@ import uuid
 
 from . import db, ma
 
+friendship = Table(
+    'friendships',
+    db.Column('origin_user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('friend_user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+)
+
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
